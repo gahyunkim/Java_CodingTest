@@ -45,51 +45,35 @@ s[1] = 90;
 - 배열은 반복 구조를 이용해서 배열 요소에 차례로 접근할 수 있기 때문에 편리함.
 - 하지만, 배열은 한번 생성되면 크기를 변경할 수 없음.
 - 배열의 크기를 동적으로 변경해야 한다면 ArrayList라는 클래스를 사용해야 함.
-### 5) do-while문
+
+### 5) ArrayList
 ```java
-public class Main {
-	public static void main(String[] args) {
-		do
-		{
-			문장1;
-			문장2;
-		}whil(조건);
+ArrayList<String> list = new ArrayList<>();
+list.add("짱구");
+list.add("흰둥이");
+list.remove(1);	// 1번 요소 삭제하기
+```
+- 배열의 크기가 정해지면 바꿀 수 없는데, ArrayList를 사용하면 매열의 크기를 자동으로 변경할 수 있다.
+- 실행 도중에 배열의 크기를 변경할 수 있는 동적 배열이다.
+- ArrayList에서는 ()를 사용해서 요소에 접근한다.
+- 정수 배열에서 int가 아니라 Integer를 사용해서함
+
+### 6) 래그드 배열
+```java
+int[][] ragged = new int[MAX_ROWS+1][];	//래그드 배열 생성
+
+for(int r=0;r<=MAX_ROWS;r++)
+{
+	ragged[r] = new int[r+1];
+}
+for(int r=0;r<=ragged.length;r++)
+{
+	for(int c=0;r<=ragged[r].length;c++)
+	{
+		ragged[r][c]=c;
 	}
 }
 ```
-- do-while문은 while문과 비슷하나 반복 조건을 루프의 처음이 아니라 루프의 끝에서 검사한다는 점이 다르다
-- do-while문에서는 먼저 문장을 실행한 후에 조건이 맞는지 아닌지 확인한다.
-
-### 6) for문
-```java
-public class Main {
-	public static void main(String[] args) {
-		for(초기식;조건식;증감식)  
-		{
-			반복문장;
-		}
-	}
-}
-```
-- 초기식 = 반복 루프를 시작하기 전에 한번만 실행된다. 변수 값을 초기화하는 용도
-- 조건식 = 반복의 조건을 검사하는 수식, 조건식이 거짓이 되면 반복을 중단하도록 함.
-- 증감식 = 한번의 루프 실행이 끝나면 증감식이 실행된다. 
-
-### 7) 중첩 반복문
-```java
-public class Main {
-	public static void main(String[] args) {
-		for(int i=0;i<4;i++){
-			for(k=0;k<5;k++) {
-				반복문장;
-			}
-		}
-	}
-}
-```
-- 중첩반복문 = 반복문 안에 다른 반복문이 실행되는 형태
-- 밖에 있는 반복문을 외부 반복문이고, 안에 있는 반복문은 내부 반복문이라고 함.
-
-### 8) break와 continue
-- break는 조건을 만족하는 경우에 그 조건을 빠져나와서 아예 종료하는 것.
-- continue는 조건을 만족하는 부분만 마무리하고 다시 진행하도록 하는 것.
+- 자바에서 다차원의 배열은 "배열의 배열"을 이용해서 구현된다.
+- 래그드 배열은 행마다 길이가 틀린 배열이다.
+- 2차원 배열을 생성해서 값을 저장해주는 과정이다.
