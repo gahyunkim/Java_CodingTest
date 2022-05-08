@@ -20,74 +20,89 @@
 - 클래스 = 객체에 대한 설계도 + 특정한 종류의 객체들을 찍어내는 형틀, 혹은 청사진이라고 함
 - 클래스로부터 만들어지는 객체를 그 클래스의 인스턴스라고 함
 ```java
-class 클래스 이름{	
+public class Television{	
+	// 내부에서 필드나 메소드를 정의함.
+	int channel;
+	int volume;
+	boolean onOff;
+}
+``` 
+- 클래스 안에는 필드와 메소드들이 정의되고 이들은 클래스의 멤버라고 한다.
+- Television이라는 클래스 내부에 3개의 필드가 정의되어져 있다
+
+### 3) 객체 생성
+```java
+public class TelevisionTest{	
+	public static void main(String[] args){
+		Television tv = new Television();
+		tv.channel=7;
+		tv.volume = 9;
+		tv.onOff = true;
+		System.out.println("텔레비전의 채널은 "+tv.channel+" 이고 볼륨은 "+tv.volume+"입니다.");
+	}
+}
+``` 
+- Telvision tv = new Television으로 객체를 동적 생성해줌
+- 동적 생성한 tv라는 객체에 접근하기 위해서 .연산자를 사용함
+#### 객체 생성 과정
+> 1) 참조 변수를 선언함
+> 2) new 연산자를 이용해서 Television 클래스의 객체를 생성하고 객체의 참조값을 반환함
+> 3) 참조 변수와 객체를 서로 연결함
+
+### 4) 참조 변수
+- 자바에서는 변수를 기초 변수와 참조 변수로 나눔
+- 기초 변수 = int, float, char등의 기초 자료형의 값을 저장하는 변수
+- 참조 변수 = 객체를 참조할때 사용되는 변수로 객체의 참조값이 저장됨.
+- 참조 변수에는 객체가 직접 저장되는 것은 아니고 화살표만 들어있다고 생각하면 된다.
+
+### 5) 메소드
+```java
+public class Television{	
+	// 내부에서 필드나 메소드를 정의함.
+	int channel;
+	int volume;
+	boolean onOff;
 	
-
-}
-``` 
-
-### 3) while문
-```java
-public class Main {
-	public static void main(String[] args) {
-		while(조건식){
-			문장1;
-			문장2;
-		}
-	}
-}
-``` 
-- 어떤 조건을 정해놓고 반복을 하는 구조. 미리 반복 횟수를 알 수 없는 경우에 사용하는 구조
-- 조건을 만족하는 동안에 문장1, 문장2를 실행하도록 함.
-
-### 4) do-while문
-```java
-public class Main {
-	public static void main(String[] args) {
-		do
-		{
-			문장1;
-			문장2;
-		}whil(조건);
+	// 메소드
+	void print(){
+		System.out.println("텔레비전의 채널은 "+tv.channel+" 이고 볼륨은 "+tv.volume+"입니다.");
 	}
 }
 ```
-- do-while문은 while문과 비슷하나 반복 조건을 루프의 처음이 아니라 루프의 끝에서 검사한다는 점이 다르다
-- do-while문에서는 먼저 문장을 실행한 후에 조건이 맞는지 아닌지 확인한다.
+- 메소드 = 클래스 안에 선언된 특정한 작업을 수행하는 문장들의 모임
+- 반환형은 메소드가 반환하는 데이터의 타입을 지정한다.
+- void는 반환값이 없는 경우에 사용함
 
-### 5) for문
+### 6) 인수와 매개변수
 ```java
-public class Main {
-	public static void main(String[] args) {
-		for(초기식;조건식;증감식)  
-		{
-			반복문장;
-		}
+int sum = add(25,35);
+...
+int add(int x,int y)
+{
+	return x+y;
+}
+```
+- 인수 = 호출하는 곳에서 메소드 호출 시 전달하는 값
+- 매개변수 = 메소드에서 값을 받을 때 사용하는 변수
+- 즉, add(25,35)로 add 메소드를 호출했으므로, 25와 35는 인수이고 int x, y로 값을 받았으므로 x와 y는 매개변수이다. 
+
+### 7) 메소드 오버로딩
+- 메소드 오버로딩 = 이름이 같은 메소드를 여러 개 정의하는 것. 
+- 하지만 각각의 메소드가 가지는 매개변수는 달라야 함.
+```java
+public class MyMath{	
+	int square(int i){
+		return i*i;
+	}
+	double square(double i){
+		return i*i;
 	}
 }
 ```
-- 초기식 = 반복 루프를 시작하기 전에 한번만 실행된다. 변수 값을 초기화하는 용도
-- 조건식 = 반복의 조건을 검사하는 수식, 조건식이 거짓이 되면 반복을 중단하도록 함.
-- 증감식 = 한번의 루프 실행이 끝나면 증감식이 실행된다. 
+- MyMath 클래스에서 자료형이 다른 square라는 이름을 가진 메소드를 오버로딩했다.
+- 매개변수만 다르면 메소드의 이름은 같아도 된다.
 
-### 6) 중첩 반복문
-```java
-public class Main {
-	public static void main(String[] args) {
-		for(int i=0;i<4;i++){
-			for(k=0;k<5;k++) {
-				반복문장;
-			}
-		}
-	}
-}
-```
-- 중첩반복문 = 반복문 안에 다른 반복문이 실행되는 형태
-- 밖에 있는 반복문을 외부 반복문이고, 안에 있는 반복문은 내부 반복문이라고 함.
 
-### 7) break와 continue
-- break는 조건을 만족하는 경우에 그 조건을 빠져나와서 아예 종료하는 것.
-- continue는 조건을 만족하는 부분만 마무리하고 다시 진행하도록 하는 것.
 
 
 
